@@ -26,37 +26,50 @@ export const Todo = ({ todo, index, handleEdit, handleDelete }) => {
 		setEditing(false)
 	}
 
+	const handleComplete = () => {}
+
 	return (
 		<motion.div
-			onClick={handleClick}
 			variants={variants}
 			className='flex justify-center drop-shadow-md bg-emerald-400 px-6 py-4 rounded-md my-3 text-white'
 			key={todo.id ? todo.id : index}
 		>
-			{
-				!editing ? (
-					<p className='px-3 text-lg font-bold'>{todo.name}</p>
-				) : (
-					<input
-						className='text-slate-500 rounded-md px-4 py-1 mx-3'
-						placeholder='Name'
-						value={todoState.name}
-						onChange={e => setInput('name', e.target.value)}
-					/>
-				)
-			}
-			{
-				!editing ? (
-				<p className='px-3 py-0.5'>{todo.description}</p>
-				) : (
-					<input
-						className='text-slate-500 rounded-md px-4 py-1 mx-3'
-						placeholder='Description'
-						value={todoState.description}
-						onChange={e => setInput('description', e.target.value)}
-					/>
-				)
-			}
+			<input
+				type='checkbox'
+				value={todo.complete}
+				onChange={handleComplete}
+				className='mx-3'
+			/>
+
+			<div
+				className='flex justify-center'
+				onClick={handleClick}
+			>
+				{
+					!editing ? (
+						<p className='px-3 text-lg font-bold'>{todo.name}</p>
+					) : (
+						<input
+							className='text-slate-500 rounded-md px-4 py-1 mx-3'
+							placeholder='Name'
+							value={todoState.name}
+							onChange={e => setInput('name', e.target.value)}
+						/>
+					)
+				}
+				{
+					!editing ? (
+					<p className='px-3 py-0.5'>{todo.description}</p>
+					) : (
+						<input
+							className='text-slate-500 rounded-md px-4 py-1 mx-3'
+							placeholder='Description'
+							value={todoState.description}
+							onChange={e => setInput('description', e.target.value)}
+						/>
+					)
+				}
+			</div>
 
 			{/* Delete/edit buttons (icons?) */}
 			<button

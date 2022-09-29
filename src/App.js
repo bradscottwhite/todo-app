@@ -68,7 +68,7 @@ const App = () => {
 				{({ signOut, user }) => (
 					<main className='drop-shadow-xl bg-emerald-500 py-10 px-20 rounded-md'>
 						<h1 className='text-2xl text-white font-bold p-4 drop-shadow-xl'>
-							Hello {user.username}
+							Hello {user.attributes.name}
 						</h1>
 
 						<NewTodo
