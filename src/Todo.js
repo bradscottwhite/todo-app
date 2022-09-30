@@ -33,34 +33,37 @@ export const Todo = ({ todo: { id, name, description, complete }, index, handleE
 	return (
 		<motion.div
 			variants={variants}
-			className='flex justify-center drop-shadow-md bg-emerald-400 px-6 py-4 rounded-md my-3 text-white'
+			className='grid grid-rows-3 sm:grid-cols-1 sm:flex sm:justify-center drop-shadow-md bg-emerald-400 py-2 sm:px-6 sm:py-4 rounded-md my-3 text-white'
 			key={id ? id : index}
 		>
-			<input
-				type='checkbox'
-				checked={todoState.complete}
-				onChange={flipComplete}
-				className='mx-3'
-			/>
+			<div className='flex px-4 sm:px-0'>
+				<input
+					type='checkbox'
+					checked={todoState.complete}
+					onChange={flipComplete}
+					className='m-2 sm:mx-3'
+				/>
+
+				{
+					!editing ? (
+						<p className='px-3 py-2 sm:py-0 text-lg font-bold'>{todoState.name}</p>
+					) : (
+						<input
+							className='text-slate-500 rounded-md px-4 py-1 mx-3 sm:my-0 my-2'
+							placeholder='Name'
+							value={todoState.name}
+							onChange={e => setInput('name', e.target.value)}
+						/>
+					)
+				}
+			</div>
 
 			{
 				!editing ? (
-					<p className='px-3 text-lg font-bold'>{todoState.name}</p>
+					<p className='text-md px-10 sm:px-3 py-1 sm:py-0.5'>{todoState.description}</p>
 				) : (
 					<input
-						className='text-slate-500 rounded-md px-4 py-1 mx-3'
-						placeholder='Name'
-						value={todoState.name}
-						onChange={e => setInput('name', e.target.value)}
-					/>
-				)
-			}
-			{
-				!editing ? (
-					<p className='px-3 py-0.5'>{todoState.description}</p>
-				) : (
-					<input
-						className='text-slate-500 rounded-md px-4 py-1 mx-3'
+						className='text-slate-500 rounded-md px-4 py-1 mx-3 sm:my-0 my-2'
 						placeholder='Description'
 						value={todoState.description}
 						onChange={e => setInput('description', e.target.value)}
@@ -70,14 +73,14 @@ export const Todo = ({ todo: { id, name, description, complete }, index, handleE
 
 			{/* Delete/edit buttons (icons?) */}
 			<button
-				className='mx-3 bg-emerald-200 hover:bg-emerald-300 hover:scale-110 transition ease-in-out delay-150 duration-300 drop-shadow-xl rounded-md px-4 py-1 text-white font-bold'
+				className='mx-6 sm:mx-3 bg-emerald-200 hover:bg-emerald-300 hover:scale-110 transition ease-in-out delay-150 duration-300 drop-shadow-xl rounded-md px-4 py-1 text-md text-white font-bold mb-3 sm:mb-0'
 				onClick={update}
 			>
 				{editing ? 'Save' : 'Edit'}
 			</button>
 			
 			<button
-				className='mx-3 bg-emerald-200 hover:bg-emerald-300 hover:scale-110 transition ease-in-out delay-150 duration-300 drop-shadow-xl rounded-md px-4 py-1 text-white font-bold'
+				className='mx-6 sm:mx-3 bg-emerald-200 hover:bg-emerald-300 hover:scale-110 transition ease-in-out delay-150 duration-300 drop-shadow-xl rounded-md px-4 py-1 text-md text-white font-bold mb-3 sm:mb-0'
 				onClick={() => handleDelete(id, index)}
 			>Delete</button>
 		</motion.div>

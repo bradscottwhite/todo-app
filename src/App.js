@@ -27,12 +27,11 @@ const App = () => {
 		setFormState({ ...formState, [ key ]: value })
 	}
 
-
 	return (
-		<div className='w-screen h-screen flex justify-center items-center border-md'>
+		<div className='w-screen h-screen flex justify-center items-center'>
 			<Authenticator>
 				{({ signOut, user }) => (
-					<main className='drop-shadow-xl bg-emerald-500 py-10 px-20 rounded-md'>
+					<main className='drop-shadow-xl bg-emerald-500 py-4 px-8 sm:py-10 sm:px-20 rounded-md'>
 						<h1 className='text-2xl text-white font-bold p-4 drop-shadow-xl'>
 							Hello {user.attributes.name}
 						</h1>
