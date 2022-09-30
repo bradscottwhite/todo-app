@@ -9,7 +9,6 @@ const variants = {
 
 export const Todo = ({ todo: { id, name, description, complete }, index, handleEdit, handleDelete }) => {
 	const [ todoState, setTodoState ] = useState({ name, description, complete })
-	const [ checked, setChecked ] = useState(complete)
 	const [ editing, setEditing ] = useState(false)
 
 	const setInput = ( key, value ) => {
@@ -27,10 +26,8 @@ export const Todo = ({ todo: { id, name, description, complete }, index, handleE
 	}
 
 	const flipComplete = () => {
-		setChecked(!checked)
-		setInput('complete', checked)//!todoState.complete)
-		console.log(todoState.complete)
-		handleEdit({ id, ...todoState, complete: checked })
+		setInput('complete', !todoState.complete)
+		handleEdit({ id, ...todoState, complete: !todoState.complete })
 	}
 
 	return (
@@ -41,7 +38,7 @@ export const Todo = ({ todo: { id, name, description, complete }, index, handleE
 		>
 			<input
 				type='checkbox'
-				checked={checked /*todoState.complete*/}
+				checked={todoState.complete}
 				onChange={flipComplete}
 				className='mx-3'
 			/>

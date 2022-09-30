@@ -24,7 +24,7 @@ const variants = {
 export const Todos = ({ todos, handleEdit, handleDelete }) => (
 	<div className='py-4'>
 		<h2
-			className='flex justify-center text-xl drop-shadow-xl p-4'
+			className='text-white flex justify-center text-xl drop-shadow-xl p-4'
 			style={{ visibility: todos.length > 0 ? 'visible' : 'hidden' }}
 		>Todos</h2>
 			
