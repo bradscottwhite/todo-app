@@ -16,22 +16,21 @@ export const Todo = ({ todo: { id, name, description, complete }, index, handleE
 		setTodoState({ ...todoState, [ key ]: value })
 	}
 
-	const handleClick = () => {
-		if (editing) return
-		setEditing(true)
-	}
-
-	const edit = () => {
-		if (!editing || ( todoState.name === name && todoState.description === description ) ) return
-		handleEdit({ id, ...todoState })
-		setEditing(false)
+	const update = () => {
+		// If editing is false then set editing to true
+		if (!editing) setEditing(true)
+		// If editing is true and todo data has changed then update the todo and set editing to false
+		else if (todoState.name !== name || todoState.description !== description ) {
+			handleEdit({ id, ...todoState })
+			setEditing(false)
+		}
 	}
 
 	const flipComplete = () => {
 		setChecked(!checked)
 		setInput('complete', checked)//!todoState.complete)
 		console.log(todoState.complete)
-		handleEdit({ id, ...todoState })
+		handleEdit({ id, ...todoState, complete: checked })
 	}
 
 	return (
@@ -47,41 +46,38 @@ export const Todo = ({ todo: { id, name, description, complete }, index, handleE
 				className='mx-3'
 			/>
 
-			<div
-				className='flex justify-center'
-				onClick={handleClick}
-			>
-				{
-					!editing ? (
-						<p className='px-3 text-lg font-bold'>{todoState.name}</p>
-					) : (
-						<input
-							className='text-slate-500 rounded-md px-4 py-1 mx-3'
-							placeholder='Name'
-							value={todoState.name}
-							onChange={e => setInput('name', e.target.value)}
-						/>
-					)
-				}
-				{
-					!editing ? (
-						<p className='px-3 py-0.5'>{todoState.description}</p>
-					) : (
-						<input
-							className='text-slate-500 rounded-md px-4 py-1 mx-3'
-							placeholder='Description'
-							value={todoState.description}
-							onChange={e => setInput('description', e.target.value)}
-						/>
-					)
-				}
-			</div>
+			{
+				!editing ? (
+					<p className='px-3 text-lg font-bold'>{todoState.name}</p>
+				) : (
+					<input
+						className='text-slate-500 rounded-md px-4 py-1 mx-3'
+						placeholder='Name'
+						value={todoState.name}
+						onChange={e => setInput('name', e.target.value)}
+					/>
+				)
+			}
+			{
+				!editing ? (
+					<p className='px-3 py-0.5'>{todoState.description}</p>
+				) : (
+					<input
+						className='text-slate-500 rounded-md px-4 py-1 mx-3'
+						placeholder='Description'
+						value={todoState.description}
+						onChange={e => setInput('description', e.target.value)}
+					/>
+				)
+			}
 
 			{/* Delete/edit buttons (icons?) */}
 			<button
 				className='mx-3 bg-emerald-200 hover:bg-emerald-300 hover:scale-110 transition ease-in-out delay-150 duration-300 drop-shadow-xl rounded-md px-4 py-1 text-white font-bold'
-				onClick={edit}
-			>Edit</button>
+				onClick={update}
+			>
+				{editing ? 'Save' : 'Edit'}
+			</button>
 			
 			<button
 				className='mx-3 bg-emerald-200 hover:bg-emerald-300 hover:scale-110 transition ease-in-out delay-150 duration-300 drop-shadow-xl rounded-md px-4 py-1 text-white font-bold'
