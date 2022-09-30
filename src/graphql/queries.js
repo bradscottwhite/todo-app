@@ -8,9 +8,9 @@ export const getTodo = /* GraphQL */ `
       name
       description
       complete
+      author
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -26,9 +26,9 @@ export const listTodos = /* GraphQL */ `
         name
         description
         complete
+        author
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }

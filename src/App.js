@@ -37,10 +37,10 @@ const App = () => {
 		} catch (err) { console.log('error fetching todos') }
 	}
 
-	const addTodo = async () => {
+	const addTodo = async username => {
 		try {
 			if (!formState.name || !formState.description) return
-			const todo = { ...formState }
+			const todo = { ...formState, author: username }
 			setTodos([ ...todos, todo ])
 			setFormState(initialState)
 			await API.graphql( graphqlOperation( createTodo, { input: todo } ) )
@@ -79,6 +79,7 @@ const App = () => {
 							setInput={setInput}
 							formState={formState}
 							addTodo={addTodo}
+							user={user}
 						/>
 
 						<Todos

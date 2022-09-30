@@ -1,12 +1,17 @@
 type Todo
 @model
-@auth (
+@auth(
   rules: [
-	{ allow: owner }
+	{
+	  allow: owner,
+	  ownerField: "author",
+	  identityClaim: "username"
+	}
   ]
 ) {
   id: ID!
   name: String!
   description: String
   complete: Boolean!
+  author: String
 }

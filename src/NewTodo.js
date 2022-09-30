@@ -1,4 +1,4 @@
-export const NewTodo = ({ setInput, formState, addTodo }) => (
+export const NewTodo = ({ setInput, formState, addTodo, user }) => (
 	<div className='drop-shadow-xl bg-emerald-600 px-6 py-4 rounded-md flex justify-center'>
 		<input
 			className='rounded-md px-4 py-1 mx-3'
@@ -14,7 +14,7 @@ export const NewTodo = ({ setInput, formState, addTodo }) => (
 		/>
 		<button
 			className='bg-emerald-200 hover:bg-emerald-300 hover:scale-110 transition ease-in-out delay-150 duration-300 drop-shadow-xl rounded-md px-6 py-2 text-white font-bold mx-3'
-			onClick={addTodo}
+			onClick={() => addTodo(user.username)}
 		>Create Todo</button>
 	</div>
 );
