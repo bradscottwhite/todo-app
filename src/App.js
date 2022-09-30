@@ -47,19 +47,23 @@ const App = () => {
 		} catch (err) { console.log('error creating todo:', err) }
 	}
 
-	const handleEdit = async (id, index, data) => {
-		const newTodos = [ ...todos ]
-		newTodos.splice(index, 1, data)
-		setTodos(newTodos)
-		await API.graphql( graphqlOperation( updateTodo, { input: { id, ...data } } ) )
+	const handleEdit = async todo => {
+		try {
+			await API.graphql( graphqlOperation( updateTodo, { input: todo } ) )
+		} catch (err) {
+			console.log('Error editing todo:', err)
+		}
 	}
 
 	
 	const handleDelete = async (id, index) => {
-		const newTodos = [ ...todos ]
-		newTodos.splice(index, 1)
-		setTodos(newTodos)
-		await API.graphql( graphqlOperation( deleteTodo, { input: { id } } ) )
+		try {
+			await API.graphql( graphqlOperation( deleteTodo, { input: { id } } ) )
+		} catch  (err) {
+			console.log('Error deleting todo:', err)
+		} finally {
+			setTodos(todos.filter(todo => todo.id !== id))
+		}
 	}
 
 	return (

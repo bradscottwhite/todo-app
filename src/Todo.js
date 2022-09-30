@@ -7,8 +7,9 @@ const variants = {
 	open: { opacity: 1 }
 }
 
-export const Todo = ({ todo, index, handleEdit, handleDelete }) => {
-	const [ todoState, setTodoState ] = useState(todo)
+export const Todo = ({ todo: { id, name, description, complete }, index, handleEdit, handleDelete }) => {
+	const [ todoState, setTodoState ] = useState({ name, description, complete })
+	const [ checked, setChecked ] = useState(complete)
 	const [ editing, setEditing ] = useState(false)
 
 	const setInput = ( key, value ) => {
@@ -21,23 +22,28 @@ export const Todo = ({ todo, index, handleEdit, handleDelete }) => {
 	}
 
 	const edit = () => {
-		if (!editing || ( todoState.name === todo.name && todoState.description === todo.description ) ) return
-		handleEdit( todo.id, index, todoState )
+		if (!editing || ( todoState.name === name && todoState.description === description ) ) return
+		handleEdit({ id, ...todoState })
 		setEditing(false)
 	}
 
-	const handleComplete = () => {}
+	const flipComplete = () => {
+		setChecked(!checked)
+		setInput('complete', checked)//!todoState.complete)
+		console.log(todoState.complete)
+		handleEdit({ id, ...todoState })
+	}
 
 	return (
 		<motion.div
 			variants={variants}
 			className='flex justify-center drop-shadow-md bg-emerald-400 px-6 py-4 rounded-md my-3 text-white'
-			key={todo.id ? todo.id : index}
+			key={id ? id : index}
 		>
 			<input
 				type='checkbox'
-				value={todo.complete}
-				onChange={handleComplete}
+				checked={checked /*todoState.complete*/}
+				onChange={flipComplete}
 				className='mx-3'
 			/>
 
@@ -47,7 +53,7 @@ export const Todo = ({ todo, index, handleEdit, handleDelete }) => {
 			>
 				{
 					!editing ? (
-						<p className='px-3 text-lg font-bold'>{todo.name}</p>
+						<p className='px-3 text-lg font-bold'>{todoState.name}</p>
 					) : (
 						<input
 							className='text-slate-500 rounded-md px-4 py-1 mx-3'
@@ -59,7 +65,7 @@ export const Todo = ({ todo, index, handleEdit, handleDelete }) => {
 				}
 				{
 					!editing ? (
-					<p className='px-3 py-0.5'>{todo.description}</p>
+						<p className='px-3 py-0.5'>{todoState.description}</p>
 					) : (
 						<input
 							className='text-slate-500 rounded-md px-4 py-1 mx-3'
@@ -79,7 +85,7 @@ export const Todo = ({ todo, index, handleEdit, handleDelete }) => {
 			
 			<button
 				className='mx-3 bg-emerald-200 hover:bg-emerald-300 hover:scale-110 transition ease-in-out delay-150 duration-300 drop-shadow-xl rounded-md px-4 py-1 text-white font-bold'
-				onClick={() => handleDelete(todo.id, index)}
+				onClick={() => handleDelete(id, index)}
 			>Delete</button>
 		</motion.div>
 	)

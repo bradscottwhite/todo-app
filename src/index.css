@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-	@apply overflow-hidden bg-emerald-700;
+	@apply bg-emerald-700;
 }
