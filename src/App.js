@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import Amplify, { API, graphqlOperation } from 'aws-amplify'
+import Amplify, { API } from 'aws-amplify'
 import awsExports from './aws-exports'
 import { Authenticator } from '@aws-amplify/ui-react'
 import { listTodos } from './graphql/queries'
@@ -31,25 +31,36 @@ const App = () => {
 
 	const fetchTodos = async () => {
 		try {
-			const todoData = await API.graphql( graphqlOperation( listTodos ) )
+			const todoData = await API.graphql({
+				query: listTodos,
+				authMode: 'AMAZON_COGNITO_USER_POOLS'
+			})
 			const todos = todoData.data.listTodos.items
 			setTodos(todos)
 		} catch (err) { console.log('error fetching todos') }
 	}
 
-	const addTodo = async username => {
+	const addTodo = async () => {
 		try {
 			if (!formState.name || !formState.description) return
-			const todo = { ...formState, author: username }
+			const todo = { ...formState }
 			setTodos([ ...todos, todo ])
 			setFormState(initialState)
-			await API.graphql( graphqlOperation( createTodo, { input: todo } ) )
+			await API.graphql({
+				query: createTodo,
+				variables: { input: todo },
+				authMode: 'AMAZON_COGNITO_USER_POOLS'
+			})
 		} catch (err) { console.log('error creating todo:', err) }
 	}
 
 	const handleEdit = async todo => {
 		try {
-			await API.graphql( graphqlOperation( updateTodo, { input: todo } ) )
+			await API.graphql({
+				query: updateTodo,
+				variables: { input: todo },
+				authMode: 'AMAZON_COGNITO_USER_POOLS'
+			})
 		} catch (err) {
 			console.log('Error editing todo:', err)
 		}
@@ -58,7 +69,12 @@ const App = () => {
 	
 	const handleDelete = async (id, index) => {
 		try {
-			await API.graphql( graphqlOperation( deleteTodo, { input: { id } } ) )
+			await API.graphql({
+				query: deleteTodo,
+				variables: { input: { id } },
+				authMode: 'AMAZON_COGNITO_USER_POOLS'
+
+			})
 		} catch  (err) {
 			console.log('Error deleting todo:', err)
 		} finally {
@@ -79,7 +95,6 @@ const App = () => {
 							setInput={setInput}
 							formState={formState}
 							addTodo={addTodo}
-							user={user}
 						/>
 
 						<Todos
