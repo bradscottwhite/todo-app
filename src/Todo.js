@@ -35,10 +35,10 @@ export const Todo = ({ todo: { id, name, description, complete }, index, handleE
 			variants={variants}
 			exit={{
 			      opacity: 0,
-			      x: '-100vh',
+			      y: '-100vh',
 			      transition: {
 			      	 delay: 0.5,
-			         duration: 0.5
+			         duration: 1
 			      }
 			}}
 			className='grid grid-rows-3 sm:grid-cols-1 sm:flex sm:justify-center drop-shadow-md bg-emerald-400 py-2 sm:px-6 sm:py-4 rounded-md my-3 text-white'
