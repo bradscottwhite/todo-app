@@ -29,24 +29,24 @@ export const Todos = ({ todos, handleEdit, handleDelete }) => (
 		>Todos</h2>
 			
 		<AnimatePresence>
-		<motion.div
-			initial='closed'
-			animate='open'
-			exit='closed'
-			variants={variants}
-			className='whitespace-nowrap overflow-x-auto h-[40vh]'
-		>
-			{
-				todos.map((todo, index) => (
-					<Todo
-						todo={todo}
-						index={index}
-						handleEdit={handleEdit}
-						handleDelete={handleDelete}
-					/>
-				))
-			}
-		</motion.div>
+			<motion.div
+				initial='closed'
+				animate='open'
+				exit='closed'
+				variants={variants}
+				className='whitespace-nowrap overflow-x-auto h-[40vh]'
+			>
+				{
+					todos.map((todo, index) => (
+						<Todo
+							todo={todo}
+							index={index}
+							handleEdit={handleEdit}
+							handleDelete={handleDelete}
+						/>
+					))
+				}
+			</motion.div>
 		</AnimatePresence>
 	</div>
 );
