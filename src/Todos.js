@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import { Todo } from './Todo'
 
@@ -28,6 +28,7 @@ export const Todos = ({ todos, handleEdit, handleDelete }) => (
 			style={{ visibility: todos.length > 0 ? 'visible' : 'hidden' }}
 		>Todos</h2>
 			
+		<AnimatePresence>
 		<motion.div
 			initial='closed'
 			animate='open'
@@ -46,5 +47,6 @@ export const Todos = ({ todos, handleEdit, handleDelete }) => (
 				))
 			}
 		</motion.div>
+		</AnimatePresence>
 	</div>
 );
