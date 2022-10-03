@@ -54,6 +54,15 @@ div[role=^"tabpanel"][data-state=^"active"] > div[data-amplify-router-content] {
 	@apply w-4 h-4 mx-1 my-1;
 }
 
+.amplify-phonenumberfield input {
+	@apply rounded-r-none ml-0;
+}
+.amplify-phonenumberfield .amplify-field-group {
+	@apply flex;
+}
+.amplify-phonenumberfield .amplify-field-group__outer-end > button {
+	@apply border border-slate-300 rounded-l-md mt-2 py-1;
+}
 /*.amplify-phonenumberfield {
 	@apply hidden;	
 }*/
