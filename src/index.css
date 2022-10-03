@@ -48,7 +48,7 @@ div[role=^"tabpanel"][data-state=^"active"] > div[data-amplify-router-content] {
 	@apply flex;
 }
 .amplify-passwordfield .amplify-field-group__outer-end > button {
-	@apply border border-battleship-grey rounded-r-md mt-2 py-1;
+	@apply border border-slate-300 rounded-r-md mt-2 py-1;
 }
 .amplify-field__show-password .amplify-icon > svg {
 	@apply w-4 h-4 mx-1 my-1;
