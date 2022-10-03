@@ -1,12 +1,12 @@
 {
   "api": {
-    "todoapi": {
+    "todoapp": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "auth",
-          "resourceName": "todoapp4f304022",
+          "resourceName": "todoappa331b0ea",
           "attributes": [
             "UserPoolId"
           ]
@@ -24,7 +24,7 @@
             {
               "authenticationType": "AMAZON_COGNITO_USER_POOLS",
               "userPoolConfig": {
-                "userPoolId": "authtodoapp4f304022"
+                "userPoolId": "authtodoappa331b0ea"
               }
             }
           ]
@@ -33,7 +33,7 @@
     }
   },
   "auth": {
-    "todoapp4f304022": {
+    "todoappa331b0ea": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -41,8 +41,7 @@
       "frontendAuthConfig": {
         "socialProviders": [],
         "usernameAttributes": [
-          "EMAIL",
-          "PHONE_NUMBER"
+          "EMAIL"
         ],
         "signupAttributes": [
           "EMAIL",

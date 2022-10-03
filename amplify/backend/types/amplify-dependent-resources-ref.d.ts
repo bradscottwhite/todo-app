@@ -1,17 +1,15 @@
 export type AmplifyDependentResourcesAttributes = {
     "api": {
-        "todoapi": {
+        "todoapp": {
             "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
         }
     },
     "auth": {
-        "todoapp4f304022": {
+        "todoappa331b0ea": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
-            "HostedUIDomain": "string",
-            "OAuthMetadata": "string",
             "UserPoolId": "string",
             "UserPoolArn": "string",
             "UserPoolName": "string",

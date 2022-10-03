@@ -1,7 +1,7 @@
 {
   "version": 1,
   "serviceConfiguration": {
-    "apiName": "todoapi",
+    "apiName": "todoapp",
     "serviceName": "AppSync",
     "defaultAuthType": {
       "mode": "API_KEY",
@@ -10,7 +10,7 @@
     "additionalAuthTypes": [
       {
         "mode": "AMAZON_COGNITO_USER_POOLS",
-        "cognitoUserPoolId": "authtodoapp4f304022"
+        "cognitoUserPoolId": "authtodoappa331b0ea"
       }
     ]
   }
