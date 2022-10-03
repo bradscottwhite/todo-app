@@ -10,6 +10,8 @@ export type AmplifyDependentResourcesAttributes = {
         "todoapp4f304022": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
+            "HostedUIDomain": "string",
+            "OAuthMetadata": "string",
             "UserPoolId": "string",
             "UserPoolArn": "string",
             "UserPoolName": "string",
