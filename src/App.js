@@ -3,9 +3,7 @@ import { useState, useEffect } from 'react'
 import Amplify from 'aws-amplify'
 import awsExports from './aws-exports'
 import { Authenticator } from '@aws-amplify/ui-react'
-
-// Remove later:?
-import '@aws-amplify/ui-react/styles.css'
+//import '@aws-amplify/ui-react/styles.css'
 
 import { initialState, fetchTodos, addTodo, handleEdit, handleDelete } from './todoFns'
 
