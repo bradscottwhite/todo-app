@@ -9,7 +9,7 @@ body {
 /* Authenticaton: */
 
 div[data-amplify-authenticator] {
-	@apply flex items-center justify-center h-screen;
+	@apply text-white flex items-center justify-center h-screen;
 }
 
 div[data-amplify-container] {
@@ -53,19 +53,6 @@ div[role=^"tabpanel"][data-state=^"active"] > div[data-amplify-router-content] {
 .amplify-field__show-password .amplify-icon > svg {
 	@apply w-4 h-4 mx-1 my-1;
 }
-
-.amplify-phonenumberfield input {
-	@apply rounded-r-none ml-0;
-}
-.amplify-phonenumberfield .amplify-field-group {
-	@apply flex;
-}
-.amplify-phonenumberfield .amplify-field-group__outer-end > button {
-	@apply border border-slate-300 rounded-l-md mt-2 py-1;
-}
-/*.amplify-phonenumberfield {
-	@apply hidden;	
-}*/
 
 form[data-amplify-form] .amplify-button--primary {
 	@apply bg-emerald-200 hover:bg-emerald-300 hover:scale-110 transition ease-in-out delay-150 duration-300 drop-shadow-xl rounded-md px-6 py-2 text-white font-bold mb-3;
